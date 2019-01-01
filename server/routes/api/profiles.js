@@ -4,9 +4,9 @@ const config = require('config');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator/check');
-
+const axios = require('axios');
 const Profile = require('../../models/Profile');
-const User = require('../../models/User');
+const Province = require('../../models/Province');
 
 // @route    GET api/profile/me
 // @desc     Get current users profile
@@ -29,32 +29,17 @@ router.get('/me', auth, async (req, res) => {
 });
 
 router.get('/province', async (req, res) => {
-  var http = require('https');
+  try {
+    const province = await Province.find();
 
-  var options = {
-    method: 'GET',
-    hostname: 'pro.rajaongkir.com',
-    port: null,
-    path: '/api/province',
-    headers: {
-      key: '095d8bb01e2e836bb6fe4810ec099d54'
+    if (!province) {
+      return res.status(400).json({ msg: 'There is no province' });
     }
-  };
 
-  var req = http.request(options, function(result) {
-    var chunks = [];
-
-    result.on('data', function(chunk) {
-      chunks.push(chunk);
-    });
-
-    result.on('end', function() {
-      var body = Buffer.concat(chunks);
-      res.json(JSON.parse(body.toString()));
-    });
-  });
-
-  req.end();
+    res.json(province);
+  } catch (err) {
+    res.status(500).send('Server Error');
+  }
 });
 
 router.get('/regency', async (req, res) => {
@@ -84,6 +69,21 @@ router.get('/regency', async (req, res) => {
   });
 
   req.end();
+});
+
+router.get('/provinceandregency', async (req, res) => {
+  try {
+    const province = await axios.get(
+      'http://localhost:5000/api/profile/province'
+    );
+    const regency = await axios.get(
+      'http://localhost:5000/api/profile/regency'
+    );
+
+    res.json(regency.data);
+  } catch (error) {
+    res.status(500).send('Server Error');
+  }
 });
 
 router.get('/district', async (req, res) => {
