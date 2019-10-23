@@ -38,6 +38,7 @@
   float: right;
 }
 .barsMenu {
+  display: none !important;
   float: right;
   height: 32px;
   padding: 6px;
@@ -46,7 +47,6 @@
   background: none;
 }
 .barsBtn {
-  display: block;
   width: 20px;
   height: 2px;
   background: #1890ff;
@@ -83,7 +83,7 @@
 
 @media (max-width: 767px) {
   .barsMenu {
-    display: inline-block;
+    display: inline !important;
   }
   .leftMenu,
   .rightMenu {

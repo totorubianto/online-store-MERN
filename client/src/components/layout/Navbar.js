@@ -65,7 +65,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         <div className='leftMenu'>{leftNav('horizontal')}</div>
         <div className='rightMenu'>{rightNav('horizontal')}</div>
         <Button className='barsMenu' type='primary' onClick={e => showDrawer()}>
-          <span className='barsBtn'></span>
+          <span className='fa fa-bars'></span>
         </Button>
         <Drawer
           title='Basic Drawer'
