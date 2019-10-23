@@ -4,6 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
+import { Form, Icon, Input, Button, Checkbox } from 'antd';
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -33,56 +34,80 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
   return (
     <Fragment>
-      <h1 className='large text-primary'>Sign Up</h1>
-      <p className='lead'>
-        <i className='fas fa-user' /> Create Your Account
-      </p>
-      <form className='form' onSubmit={e => onSubmit(e)}>
-        <div className='form-group'>
-          <input
-            type='text'
-            placeholder='Name'
-            name='name'
-            value={name}
-            onChange={e => onChange(e)}
-          />
+      <div className='container'>
+        <div className='row mt-5'>
+          <div className='col-md-4'></div>
+          <div className='col-md-4'>
+            <h1 className='large text-primary'>Sign Up</h1>
+            <p className='lead'>Create Your Account</p>
+
+            <Form onSubmit={e => onSubmit(e)} className='login-form'>
+              <Form.Item>
+                <Input
+                  name='name'
+                  value={name}
+                  onChange={e => onChange(e)}
+                  prefix={
+                    <Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }} />
+                  }
+                  placeholder='Username'
+                />
+              </Form.Item>
+              <Form.Item>
+                <Input
+                  type='email'
+                  value={email}
+                  name='email'
+                  onChange={e => onChange(e)}
+                  prefix={
+                    <Icon type='mail' style={{ color: 'rgba(0,0,0,.25)' }} />
+                  }
+                  placeholder='Username'
+                />
+              </Form.Item>
+              <Form.Item>
+                <Input
+                  prefix={
+                    <Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />
+                  }
+                  type='password'
+                  name='password'
+                  value={password}
+                  onChange={e => onChange(e)}
+                  placeholder='Password'
+                />
+              </Form.Item>
+              <Form.Item>
+                <Input
+                  prefix={
+                    <Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />
+                  }
+                  type='password'
+                  name='password2'
+                  value={password2}
+                  onChange={e => onChange(e)}
+                  placeholder='Password'
+                />
+              </Form.Item>
+
+              <Form.Item>
+                <Button
+                  type='primary'
+                  htmlType='submit'
+                  className='login-form-button'
+                >
+                  Daftar
+                </Button>
+              </Form.Item>
+            </Form>
+
+            <p className='my-1'>
+              Already have an account? <Link to='/login'>Sign In</Link>
+            </p>
+          </div>
+          <div className='col-md-4'></div>
         </div>
-        <div className='form-group'>
-          <input
-            type='email'
-            placeholder='Email Address'
-            name='email'
-            value={email}
-            onChange={e => onChange(e)}
-          />
-          <small className='form-text'>
-            This site uses Gravatar so if you want a profile image, use a
-            Gravatar email
-          </small>
-        </div>
-        <div className='form-group'>
-          <input
-            type='password'
-            placeholder='Password'
-            name='password'
-            value={password}
-            onChange={e => onChange(e)}
-          />
-        </div>
-        <div className='form-group'>
-          <input
-            type='password'
-            placeholder='Confirm Password'
-            name='password2'
-            value={password2}
-            onChange={e => onChange(e)}
-          />
-        </div>
-        <input type='submit' className='btn btn-primary' value='Register' />
-      </form>
-      <p className='my-1'>
-        Already have an account? <Link to='/login'>Sign In</Link>
-      </p>
+      </div>
     </Fragment>
   );
 };
