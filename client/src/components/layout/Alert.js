@@ -6,7 +6,6 @@ const Alerts = ({ alerts }) =>
   alerts !== null &&
   alerts.length > 0 &&
   alerts.map(alert => (
-    // console.log(alert.alertType)
     <div key={alert.id}>
       <Alert message={alert.msg} type={alert.alertType} showIcon />
     </div>

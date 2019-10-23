@@ -1,12 +1,19 @@
 import React, { Fragment } from 'react';
-
+import { Result, Button } from 'antd';
+import { Link } from 'react-router-dom';
 const NotFound = () => {
   return (
     <Fragment>
-      <h1 className='x-large text-primary'>
-        <i className='fas fa-exclamation-triangle' /> Page Not Found
-      </h1>
-      <p className='large'>Sorry, this page does not exist</p>
+      <Result
+        status='404'
+        title='404'
+        subTitle='Sorry, the page you visited does not exist.'
+        extra={
+          <Link to='/'>
+            <Button type='primary'>Back Home</Button>
+          </Link>
+        }
+      />
     </Fragment>
   );
 };

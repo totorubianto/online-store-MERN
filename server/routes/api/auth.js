@@ -35,7 +35,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { email, password } = req.body;
+    const { email, password, rememberme } = req.body;
 
     try {
       let user = await User.findOne({ email });
@@ -59,16 +59,22 @@ router.post(
           id: user.id
         }
       };
-
-      jwt.sign(
-        payload,
-        config.get('jwtSecret'),
-        { expiresIn: 360000 },
-        (err, token) => {
+      if (rememberme) {
+        jwt.sign(payload, config.get('jwtSecret'), (err, token) => {
           if (err) throw err;
           res.json({ token });
-        }
-      );
+        });
+      } else {
+        jwt.sign(
+          payload,
+          config.get('jwtSecret'),
+          { expiresIn: 360000 },
+          (err, token) => {
+            if (err) throw err;
+            res.json({ token });
+          }
+        );
+      }
     } catch (err) {
       res.status(500).send('Server error');
     }
