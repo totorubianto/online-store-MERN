@@ -104,7 +104,7 @@ router.post(
       let user = await User.findOneAndUpdate(
         { email: email },
         { password: hashPassword }
-      );
+      ).select('-password');
 
       if (!user) {
         return res.status(400).json({ errors: [{ msg: 'No Account' }] });
