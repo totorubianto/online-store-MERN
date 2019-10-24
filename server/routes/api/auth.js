@@ -7,6 +7,7 @@ const config = require('config');
 const { check, validationResult } = require('express-validator/check');
 const connectMail = require('../../utils/email');
 const User = require('../../models/User');
+const uuidv1 = require('uuid/v1');
 
 // @route    GET api/auth
 // @desc     Test route
@@ -59,6 +60,7 @@ router.post(
           id: user.id
         }
       };
+
       if (rememberme) {
         jwt.sign(payload, config.get('jwtSecret'), (err, token) => {
           if (err) throw err;
@@ -94,16 +96,28 @@ router.post(
     }
 
     const { email } = req.body;
+    const password = uuidv1();
+    const salt = await bcrypt.genSalt(10);
+    const hashPassword = await bcrypt.hash(password, salt);
 
     try {
-      let user = await User.findOne({ email });
+      let user = await User.findOneAndUpdate(
+        { email: email },
+        { password: hashPassword }
+      );
 
       if (!user) {
         return res.status(400).json({ errors: [{ msg: 'No Account' }] });
       }
 
-      connectMail(1, email, 'asdas89812');
-      console.log('berhasil');
+      connectMail(1, email, password)
+        .then(data => {
+          res.json(user);
+        })
+        .catch(err => {
+          const data = err.data;
+          res.status(500).send(data);
+        });
     } catch (err) {
       res.status(500).send('Server error');
     }

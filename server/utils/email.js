@@ -151,22 +151,35 @@ const forgotPassword = (subject, password) =>
         
     </body>
   </html>`;
-const connectMail = async (key, email, password) => {
-  var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'toto.rubianto.17@gmail.com',
-      pass: 'ulum1701'
+const connectMail = (key, email, password) => {
+  return new Promise((resolve, reject) => {
+    try {
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'toto.rubianto.17@gmail.com',
+          pass: 'ulum1701'
+        }
+      });
+
+      const mailOptions = {
+        from: 'toto.rubianto.17@gmail.com', // sender address
+        to: email, // list of receivers
+        subject: 'Online Store', // Subject line
+        html: forgotPassword('Forgot Password', password)
+      };
+      transporter.sendMail(mailOptions);
+      successMSG = {
+        data: 'Success Mail Send'
+      };
+      resolve(successMSG);
+    } catch (error) {
+      errorMSG = {
+        error: 'Email not set'
+      };
+      reject(errorMSG);
     }
   });
-
-  const mailOptions = {
-    from: 'toto.rubianto.17@gmail.com', // sender address
-    to: email, // list of receivers
-    subject: 'Online Store', // Subject line
-    html: forgotPassword('Forgot Password', password)
-  };
-  transporter.sendMail(mailOptions);
 };
 
 module.exports = connectMail;
