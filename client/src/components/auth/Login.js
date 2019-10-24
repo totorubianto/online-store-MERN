@@ -65,7 +65,7 @@ const Login = ({ login, isAuthenticated }) => {
                   <Checkbox onChange={e => onRememberMe(e)}>
                     Remember me
                   </Checkbox>
-                  <Link className='login-form-forgot' to='#/'>
+                  <Link className='login-form-forgot' to='/forgotpassword'>
                     Forgot password
                   </Link>
                 </div>

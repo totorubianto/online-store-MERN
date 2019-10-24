@@ -8,7 +8,9 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
-  CLEAR_PROFILE
+  CLEAR_PROFILE,
+  EMAIL_SEND,
+  EMAIL_FAIL
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 
@@ -92,6 +94,36 @@ export const login = (email, password, rememberme) => async dispatch => {
 
     dispatch({
       type: LOGIN_FAIL
+    });
+  }
+};
+
+//forgot password
+export const forgotPassword = email => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const body = JSON.stringify({ email });
+
+  try {
+    const res = await axios.post('/api/auth/forgotpassword', body, config);
+
+    dispatch({
+      type: EMAIL_SEND,
+      payload: res.data
+    });
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, 'error')));
+    }
+
+    dispatch({
+      type: EMAIL_FAIL
     });
   }
 };

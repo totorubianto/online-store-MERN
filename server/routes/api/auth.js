@@ -5,7 +5,7 @@ const auth = require('../../middleware/auth');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const { check, validationResult } = require('express-validator/check');
-
+const connectMail = require('../../utils/email');
 const User = require('../../models/User');
 
 // @route    GET api/auth
@@ -75,6 +75,35 @@ router.post(
           }
         );
       }
+    } catch (err) {
+      res.status(500).send('Server error');
+    }
+  }
+);
+
+// @route    POST api/auth
+// @desc     Authenticate user & get token
+// @access   Public
+router.post(
+  '/forgotpassword',
+  [check('email', 'Please include a valid email').isEmail()],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { email } = req.body;
+
+    try {
+      let user = await User.findOne({ email });
+
+      if (!user) {
+        return res.status(400).json({ errors: [{ msg: 'No Account' }] });
+      }
+
+      connectMail(1, email, 'asdas89812');
+      console.log('berhasil');
     } catch (err) {
       res.status(500).send('Server error');
     }
