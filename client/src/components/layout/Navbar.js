@@ -3,28 +3,40 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
-import { Menu } from 'antd';
+import { Menu, Avatar } from 'antd';
 import './style/Navbar.css';
 import { Drawer, Button } from 'antd';
+const SubMenu = Menu.SubMenu;
 
-const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
   const authLinks = layout => (
     <Menu mode={layout}>
-      <Menu.Item key='signup'>
-        <a onClick={logout} href='#!'>
-          <i className='fas fa-sign-out-alt' />{' '}
-          <span className='hide-sm'>Logout</span>
-        </a>
-      </Menu.Item>
+      <SubMenu
+        className='not-hover'
+        title={
+          <span>
+            <Avatar
+              size='large'
+              src='https://cdns.klimg.com/dream.co.id/resized/500x/real/2019/01/03/362742/gadis-kaya-malaysia.jpg'
+            />
+            <lable className='ml-2'>{user.name}</lable>
+          </span>
+        }
+      >
+        <Menu.Item key='setting:3'>Option 3</Menu.Item>
+        <Menu.Item onClick={logout} key='setting:4'>
+          Logout
+        </Menu.Item>
+      </SubMenu>
     </Menu>
   );
 
   const guestLinks = layout => (
     <Menu mode={layout}>
-      <Menu.Item key='signin'>
+      <Menu.Item className='not-hover' key='signin'>
         <Link to='/login'>Signin</Link>
       </Menu.Item>
-      <Menu.Item key='signup'>
+      <Menu.Item className='not-hover' key='signup'>
         <Link to='/register'>Signup</Link>
       </Menu.Item>
     </Menu>
@@ -60,6 +72,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <nav className='menuBar'>
       <div className='logo'>
         <Link to=''>logo</Link>
+        {console.log(user)}
       </div>
       <div className='menuCon'>
         <div className='leftMenu'>{leftNav('horizontal')}</div>

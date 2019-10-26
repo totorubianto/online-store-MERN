@@ -52,6 +52,10 @@
   background: #1890ff;
   position: relative;
 }
+.not-hover {
+  color: #1890ff;
+  border-bottom: none !important;
+}
 .barsBtn:after,
 .barsBtn:before {
   content: attr(x);
@@ -99,4 +103,12 @@
   .logo a {
     padding: 10px 20px;
   }
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
 }
