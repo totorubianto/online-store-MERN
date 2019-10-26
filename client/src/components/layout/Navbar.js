@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
-import { Menu, Avatar } from 'antd';
+import { Menu, Avatar, Typography } from 'antd';
 import './style/Navbar.css';
 import { Drawer, Button } from 'antd';
 const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
+const { Text } = Typography;
 
 const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
   const authLinks = layout => (
@@ -23,7 +25,16 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
           </span>
         }
       >
-        <Menu.Item key='setting:3'>Option 3</Menu.Item>
+        <MenuItemGroup title='Store'>
+          <Menu.Item key='setting:1'>
+            <Avatar src='https://cdns.klimg.com/dream.co.id/resized/500x/real/2019/01/03/362742/gadis-kaya-malaysia.jpg' />
+            <Text className='ml-1'>Malefincent Store</Text>
+          </Menu.Item>
+          <Menu.Item key='setting:2'>
+            <Avatar src='https://cdns.klimg.com/dream.co.id/resized/500x/real/2019/01/03/362742/gadis-kaya-malaysia.jpg' />
+            <Text className='ml-1'>Shooes Store</Text>
+          </Menu.Item>
+        </MenuItemGroup>
         <Menu.Item onClick={logout} key='setting:4'>
           Logout
         </Menu.Item>
