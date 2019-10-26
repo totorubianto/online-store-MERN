@@ -115,8 +115,7 @@ router.post(
           res.json(user);
         })
         .catch(err => {
-          const data = err.data;
-          res.status(500).send(data);
+          res.status(500).send('Email not send');
         });
     } catch (err) {
       res.status(500).send('Server error');

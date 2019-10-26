@@ -13,6 +13,11 @@ const { Text } = Typography;
 const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
   const authLinks = layout => (
     <Menu mode={layout}>
+      <Menu.Item className='not-hover' key='signin'>
+        <Link to='/login'>
+          <Button type='primary'>Tambah Store</Button>
+        </Link>
+      </Menu.Item>
       <SubMenu
         className='not-hover'
         title={

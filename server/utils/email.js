@@ -154,6 +154,12 @@ const forgotPassword = (subject, password) =>
 const connectMail = (key, email, password) => {
   return new Promise((resolve, reject) => {
     try {
+      let variantMail;
+      if (key === 1) {
+        variantMail = forgotPassword('Forgot Password', password);
+      } else {
+        variantMail = forgotPassword('Forgot Password', password);
+      }
       var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -166,7 +172,7 @@ const connectMail = (key, email, password) => {
         from: 'toto.rubianto.17@gmail.com', // sender address
         to: email, // list of receivers
         subject: 'Online Store', // Subject line
-        html: forgotPassword('Forgot Password', password)
+        html: variantMail
       };
       transporter.sendMail(mailOptions);
       successMSG = {
