@@ -1,0 +1,34 @@
+{"_id":{"$oid":"5db45f489932c30a32f78240"},"province_id":{"$numberInt":"1"},"province":"Bali"}
+{"_id":{"$oid":"5db45f489932c30a32f78241"},"province_id":{"$numberInt":"2"},"province":"Bangka Belitung"}
+{"_id":{"$oid":"5db45f489932c30a32f78242"},"province_id":{"$numberInt":"3"},"province":"Banten"}
+{"_id":{"$oid":"5db45f489932c30a32f78243"},"province_id":{"$numberInt":"4"},"province":"Bengkulu"}
+{"_id":{"$oid":"5db45f489932c30a32f78244"},"province_id":{"$numberInt":"5"},"province":"DI Yogyakarta"}
+{"_id":{"$oid":"5db45f489932c30a32f78245"},"province_id":{"$numberInt":"6"},"province":"DKI Jakarta"}
+{"_id":{"$oid":"5db45f489932c30a32f78246"},"province_id":{"$numberInt":"7"},"province":"Gorontalo"}
+{"_id":{"$oid":"5db45f489932c30a32f78247"},"province_id":{"$numberInt":"8"},"province":"Jambi"}
+{"_id":{"$oid":"5db45f489932c30a32f78248"},"province_id":{"$numberInt":"9"},"province":"Jawa Barat"}
+{"_id":{"$oid":"5db45f489932c30a32f78249"},"province_id":{"$numberInt":"10"},"province":"Jawa Tengah"}
+{"_id":{"$oid":"5db45f489932c30a32f7824a"},"province_id":{"$numberInt":"11"},"province":"Jawa Timur"}
+{"_id":{"$oid":"5db45f489932c30a32f7824b"},"province_id":{"$numberInt":"12"},"province":"Kalimantan Barat"}
+{"_id":{"$oid":"5db45f489932c30a32f7824c"},"province_id":{"$numberInt":"13"},"province":"Kalimantan Selatan"}
+{"_id":{"$oid":"5db45f489932c30a32f7824d"},"province_id":{"$numberInt":"14"},"province":"Kalimantan Tengah"}
+{"_id":{"$oid":"5db45f489932c30a32f7824e"},"province_id":{"$numberInt":"15"},"province":"Kalimantan Timur"}
+{"_id":{"$oid":"5db45f489932c30a32f7824f"},"province_id":{"$numberInt":"16"},"province":"Kalimantan Utara"}
+{"_id":{"$oid":"5db45f489932c30a32f78250"},"province_id":{"$numberInt":"17"},"province":"Kepulauan Riau"}
+{"_id":{"$oid":"5db45f489932c30a32f78251"},"province_id":{"$numberInt":"18"},"province":"Lampung"}
+{"_id":{"$oid":"5db45f489932c30a32f78252"},"province_id":{"$numberInt":"19"},"province":"Maluku"}
+{"_id":{"$oid":"5db45f489932c30a32f78253"},"province_id":{"$numberInt":"20"},"province":"Maluku Utara"}
+{"_id":{"$oid":"5db45f489932c30a32f78254"},"province_id":{"$numberInt":"21"},"province":"Nanggroe Aceh Darussalam (NAD)"}
+{"_id":{"$oid":"5db45f489932c30a32f78255"},"province_id":{"$numberInt":"22"},"province":"Nusa Tenggara Barat (NTB)"}
+{"_id":{"$oid":"5db45f489932c30a32f78256"},"province_id":{"$numberInt":"23"},"province":"Nusa Tenggara Timur (NTT)"}
+{"_id":{"$oid":"5db45f489932c30a32f78257"},"province_id":{"$numberInt":"24"},"province":"Papua"}
+{"_id":{"$oid":"5db45f489932c30a32f78258"},"province_id":{"$numberInt":"25"},"province":"Papua Barat"}
+{"_id":{"$oid":"5db45f489932c30a32f78259"},"province_id":{"$numberInt":"26"},"province":"Riau"}
+{"_id":{"$oid":"5db45f489932c30a32f7825a"},"province_id":{"$numberInt":"27"},"province":"Sulawesi Barat"}
+{"_id":{"$oid":"5db45f489932c30a32f7825b"},"province_id":{"$numberInt":"28"},"province":"Sulawesi Selatan"}
+{"_id":{"$oid":"5db45f489932c30a32f7825c"},"province_id":{"$numberInt":"29"},"province":"Sulawesi Tengah"}
+{"_id":{"$oid":"5db45f489932c30a32f7825d"},"province_id":{"$numberInt":"30"},"province":"Sulawesi Tenggara"}
+{"_id":{"$oid":"5db45f489932c30a32f7825e"},"province_id":{"$numberInt":"31"},"province":"Sulawesi Utara"}
+{"_id":{"$oid":"5db45f489932c30a32f7825f"},"province_id":{"$numberInt":"32"},"province":"Sumatera Barat"}
+{"_id":{"$oid":"5db45f489932c30a32f78260"},"province_id":{"$numberInt":"33"},"province":"Sumatera Selatan"}
+{"_id":{"$oid":"5db45f489932c30a32f78261"},"province_id":{"$numberInt":"34"},"province":"Sumatera Utara"}
