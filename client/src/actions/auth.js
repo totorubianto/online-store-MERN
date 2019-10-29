@@ -123,6 +123,7 @@ export const forgotPassword = email => async dispatch => {
       type: EMAIL_SEND,
       payload: res.data
     });
+    dispatch(setAlert(res.data.email, 'success'));
   } catch (err) {
     const errors = err.response.data.errors;
 
