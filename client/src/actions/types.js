@@ -25,3 +25,7 @@ export const REMOVE_COMMENT = 'REMOVE_COMMENT';
 //email
 export const EMAIL_SEND = 'EMAIL_SEND';
 export const EMAIL_FAIL = 'EMAIL_FAIL';
+
+// address API
+export const ADDRESS_API = 'ADDRESS_API';
+export const ADDRESS_API_ERROR = 'ADDRESS_API_ERROR';

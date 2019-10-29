@@ -1,70 +1,40 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import {} from './types';
-import setAuthToken from '../utils/setAuthToken';
+import { ADDRESS_API, ADDRESS_API_ERROR } from './types';
 
-// Login User
-export const login = (email, password, rememberme) => async dispatch => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
-
-  const body = JSON.stringify({ email, password, rememberme });
-
+export const getProvinceAndRegency = () => async dispatch => {
   try {
-    const res = await axios.post('/api/auth', body, config);
+    const province = await axios.get('/api/profile/province');
+    const regency = await axios.get('/api/profile/regency');
+    let hash = Object.create(null);
+
+    let res = province.data.map(
+      (hash => province =>
+        (hash[province.province_id] = {
+          _id: province._id,
+          value: province.province,
+          label: province.province,
+          children: []
+        }))(hash)
+    );
+    regency.data.forEach(
+      (hash => regency => {
+        hash[regency.province_id].children.push({
+          _id: regency._id,
+          city_id: regency.city_id,
+          value: regency.city_id,
+          label: regency.city_name
+        });
+      })(hash)
+    );
 
     dispatch({
-      type: LOGIN_SUCCESS,
-      payload: res.data
-    });
-
-    dispatch(loadUser());
-  } catch (err) {
-    let errors = [];
-
-    if (err.response.data) {
-      errors = err.response.data.errors;
-    }
-
-    if (errors) {
-      errors.forEach(error => dispatch(setAlert(error.msg, 'error')));
-    }
-
-    dispatch({
-      type: LOGIN_FAIL
-    });
-  }
-};
-
-//forgot password
-export const forgotPassword = email => async dispatch => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
-
-  const body = JSON.stringify({ email });
-
-  try {
-    const res = await axios.post('/api/auth/forgotpassword', body, config);
-
-    dispatch({
-      type: EMAIL_SEND,
-      payload: res.data
+      type: ADDRESS_API,
+      payload: res
     });
   } catch (err) {
-    const errors = err.response.data.errors;
-
-    if (errors) {
-      errors.forEach(error => dispatch(setAlert(error.msg, 'error')));
-    }
-
     dispatch({
-      type: EMAIL_FAIL
+      type: ADDRESS_API_ERROR
     });
   }
 };

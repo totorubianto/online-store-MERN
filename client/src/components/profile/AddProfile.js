@@ -1,41 +1,33 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
+import { getProvinceAndRegency } from '../../actions/profile';
 import { Cascader } from 'antd';
 
-const ForgotPassword = ({ forgotPassword }) => {
-  const options = [
-    {
-      value: 'zhejiang',
-      label: 'Zhejiang',
-      children: [
-        {
-          value: 'hangzhou',
-          label: 'Hangzhou'
-        }
-      ]
-    },
-    {
-      value: 'jiangsu',
-      label: 'Jiangsu',
-      children: [
-        {
-          value: 'nanjing',
-          label: 'Nanjing',
-          children: [
-            {
-              value: 'zhonghuamen',
-              label: 'Zhong Hua Men'
-            }
-          ]
-        }
-      ]
-    }
-  ];
+const AddProfile = ({ profile, getProvinceAndRegency }) => {
+  useEffect(() => {
+    getProvinceAndRegency();
+  }, [getProvinceAndRegency]);
+
   function onChange(value) {
     console.log(value);
+  }
+  let address;
+  console.log(profile.addressAPI);
+  if (profile === null) {
+    address = [
+      {
+        value: 'null',
+        label: 'null'
+      },
+      {
+        value: 'null',
+        label: 'null'
+      }
+    ];
+  } else {
+    address = profile.addressAPI;
   }
 
   return (
@@ -44,7 +36,7 @@ const ForgotPassword = ({ forgotPassword }) => {
         <div className='row mt-5'>
           <div className='col-md-4'></div>
           <div className='col-md-4'>
-            <Cascader options={options} onChange={onChange} />
+            <Cascader options={address} onChange={onChange} />
           </div>
           <div className='col-md-4'></div>
         </div>
@@ -53,11 +45,13 @@ const ForgotPassword = ({ forgotPassword }) => {
   );
 };
 
-ForgotPassword.propTypes = {
-  forgotPassword: PropTypes.func.isRequired
+AddProfile.propTypes = {
+  getProvinceAndRegency: PropTypes.func.isRequired
 };
-
+const mapStateToProps = state => ({
+  profile: state.profile
+});
 export default connect(
-  null,
-  null
-)(ForgotPassword);
+  mapStateToProps,
+  { getProvinceAndRegency }
+)(AddProfile);
