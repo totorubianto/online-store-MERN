@@ -1,4 +1,5 @@
 {
   "mongoURI": "mongodb://localhost:27017/store",
+  "mongoURITest": "mongodb://localhost:27017/storetest",
   "jwtSecret": "secret"
 }

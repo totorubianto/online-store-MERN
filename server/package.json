@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "test": "NODE_ENV=test mocha --recursive --exit --timeout 100000 ",
+    "dev": "nodemon server.js "
   },
   "author": "",
   "license": "ISC",
@@ -16,8 +16,14 @@
     "express": "^4.17.1",
     "express-validator": "^6.2.0",
     "jsonwebtoken": "^8.5.1",
+    "mockgoose": "^8.0.4",
     "mongoose": "^5.7.6",
     "nodemailer": "^6.3.1",
+    "supertest": "^4.0.2",
     "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2"
   }
 }
